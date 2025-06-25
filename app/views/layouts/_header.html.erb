@@ -1,0 +1,23 @@
+<ul class="nav justify-content-center">
+
+    <% if user_signed_in? %>
+
+        <%= link_to "Home", "#",class: "nav-item"%>
+        <%= link_to "Articles", "#",class: "nav-item"%>
+        <%= link_to "Books", "#",class: "nav-item"%>
+        <%= link_to "Streaks", "#",class: "nav-item"%>
+        <%= link_to "Profile", "#",class: "nav-item"%>
+        <%= link_to "Sign Out", destroy_user_session_path , data: { turbo_method: :delete },class: "nav-item"%>
+
+        <%= link_to "Create Article", "#",class: "nav-item active"%>
+
+    <%else%>
+        <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link disabled"%>
+        </li>
+        <li class="nav-item">
+            <%=link_to "Create an Account", new_user_registration_path,class: "nav-link active" %>
+        </li>
+    <%end%>
+    
+</ul>

@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: MyString
+  streak: 1
+  bio: MyText
+  firstname: MyString
+  lastname: MyString
+  user: one
+
+two:
+  username: MyString
+  streak: 1
+  bio: MyText
+  firstname: MyString
+  lastname: MyString
+  user: two
