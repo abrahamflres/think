@@ -7,7 +7,18 @@ class ProfilesController < ApplicationController
     @profile = current_user.profile
     @articles = current_user.profile.articles
   end
+
   def new
+    @profile = current_user.build_profile
+  end
+  def create
+    @profile = current_user.build_profile(profile_params)
+
+    if @profile.save
+      redirect_to profiles_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit

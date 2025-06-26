@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
   def after_sign_in_path_for(resource)
-    if current_user.profile.persisted?
+    if resource.profile.present?
       profiles_path
     else
       new_profile_path

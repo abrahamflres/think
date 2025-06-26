@@ -1,5 +1,8 @@
+<br>
 <h1><%=@article.title%></h1>
 <p><%=@article.body%></p>
+
+<%= image_tag @article.image%>
 
 
 <%= link_to "Update Article", edit_profile_article_path(@profile, @article)%>
