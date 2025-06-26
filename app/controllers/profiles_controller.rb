@@ -5,6 +5,7 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = current_user.profile
+    @articles = current_user.profile.articles
   end
   def new
   end

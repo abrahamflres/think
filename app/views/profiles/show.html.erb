@@ -1,6 +1,22 @@
 <h1><%=@profile.username %></h1>
 <%= image_tag  @profile.image%>
+<%= @profile.firstname%> <%= @profile.lastname%> <br>
+<%= @profile.bio%>
 
 
 <%=link_to "Edit Profile", edit_profile_path(@profile), class:"btn btn-primary"%>
 <%= link_to "Account Settings", edit_user_registration_path, class:"btn btn-secondary "%>
+
+
+
+<h3><%="Published Articles by: #{@profile.username} "%></h3>
+<br>
+
+
+<ul>
+  <% @articles.each do |a|%>
+    <h3><strong><%= a.title%></strong></h3>
+    <p><%= a.body%></p>
+    <%= link_to "View Article", profile_article_path(@profile, a)%>
+</ul>
+<%end%>
