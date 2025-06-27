@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_profile
   def index
+    @profile = Profile.find(params[:id])
   end
 
   def show
@@ -15,7 +16,7 @@ class ArticlesController < ApplicationController
     @article = @profile.articles.new(article_params)
 
     if @article.save
-      redirect_to profile_path
+      redirect_to profile_articles_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -37,6 +38,10 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
+    @article = @profile.articles.find(params[:id])
+    @article.destroy
+
+    redirect_to profile_path
   end
 private
   def set_profile

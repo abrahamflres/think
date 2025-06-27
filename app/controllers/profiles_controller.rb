@@ -1,11 +1,12 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
   def index
+    @articles = Article.all
   end
 
   def show
-    @profile = current_user.profile
-    @articles = current_user.profile.articles
+  @profile = Profile.find(params[:id])
+  @articles = @profile.articles
   end
 
   def new
