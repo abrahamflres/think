@@ -9,6 +9,7 @@
     <%="published by #{a.profile.username}"%> <%= link_to "show", profile_path(a.profile)%>
     <br>
     <%=link_to "Like", "#"%><i class="fa-regular fa-thumbs-up"></i>
+    <%= a.likes_count%>
 </ul>
 <%end%>
 
