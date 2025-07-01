@@ -5,8 +5,9 @@ class ProfilesController < ApplicationController
   end
 
   def show
-  @profile = Profile.find(params[:id])
-  @articles = @profile.articles
+    @profile = Profile.find(params[:id])
+    @articles = @profile.articles
+    @current_profile = current_user.profile
   end
 
   def new

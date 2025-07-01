@@ -3,9 +3,14 @@
 <%= @profile.firstname%> <%= @profile.lastname%> <br>
 <%= @profile.bio%>
 
+<% if @current_profile.id == @profile.id%>
 
-<%=link_to "Edit Profile", edit_profile_path(@profile), class:"btn btn-primary"%>
-<%= link_to "Account Settings", edit_user_registration_path, class:"btn btn-secondary "%>
+  <%=link_to "Edit Profile", edit_profile_path(@profile), class:"btn btn-primary"%>
+  <%=link_to "Account Settings", edit_user_registration_path, class:"btn btn-secondary "%>
+<%else%>
+  <p></p>
+<%end%>
+
 
 
 

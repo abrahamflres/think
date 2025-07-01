@@ -1,9 +1,12 @@
 
 <br>
-<% @articles.each do |a|%>
-  <h3><%=a.title%></h3>
-  <p><%=a.body%></p>
-  <%= image_tag a.image%>
-  <br>
-  <%= "Published by: #{a.profile.username}"%><%=link_to "show", profile_path(a.profile)%>
-<%end%> 
+<ul>
+  <% @articles.each do |a|%>
+    <h3><%= a.title%></h3>
+    <p><%= a.body%></p>
+    <%= image_tag a.image%>
+    <br>
+    <%="published by #{a.profile.username}"%> <%= link_to "show", profile_path(a.profile)%>
+</ul>
+<%end%>
+
