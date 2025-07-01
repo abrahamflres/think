@@ -3,6 +3,7 @@
 <%= @profile.firstname%> <%= @profile.lastname%> <br>
 <%= @profile.bio%>
 
+<%# if current user clicks their own profile, will display following settings %>
 <% if @current_profile.id == @profile.id%>
 
   <%=link_to "Edit Profile", edit_profile_path(@profile), class:"btn btn-primary"%>
