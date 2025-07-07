@@ -7,9 +7,4 @@ class Article < ApplicationRecord
 
 
   validates :title, :body, presence: true
-
-
-  def likes_count
-    likes.count
-  end
 end

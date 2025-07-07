@@ -2,6 +2,8 @@ class Like < ApplicationRecord
   belongs_to :profile
   belongs_to :article
 
+  validates :id, presence: true, uniqueness: true
+
 
   def self.create_like(profile_id, article_id)
     create(profile_id: profile_id, article_id: article_id)

@@ -1,15 +1,26 @@
+<div class="container mt-4">
 
-<% @articles.each do |a| %>
-  <h3><%= a.title %></h3>
-  <p><%= a.body %></p>
-  <%= image_tag a.image if a.image.attached? %>
-  <br>
-  Published by <%= a.profile.username %> 
-  <%= link_to "Show Profile", profile_path(a.profile) %>
-  <br>
-  
-  <%= button_to "Like", profile_article_likes_path(a.profile, a), method: :post %>
-  <i class="fa-regular fa-thumbs-up"></i>
-  <%= a.likes_count %>
-<% end %>
+  <% @articles.each do |a| %>
+    <div class="card mb-3 shadow-sm">
+      <div class="card-body">
+        <h4 class="card-title"><%= a.title %></h4>
+        <p class="card-text"><%= a.body %></p>
 
+        <% if a.image.attached? %>
+          <img src="<%= url_for(a.image) %>" class="img-fluid mb-3" alt="Article image">
+        <% end %>
+
+        <p class="text-muted mb-2">
+          Published by <strong><%= a.profile.username %></strong> |
+          <%= link_to "View Profile", profile_path(a.profile), class: "text-decoration-none" %>
+        </p>
+
+        <div class="d-flex align-items-center">
+          <%= button_to "Like", profile_article_likes_path(a.profile, a), method: :post, class: "btn btn-outline-primary btn-sm me-2" %>
+          <i class="fa-regular fa-thumbs-up me-1"></i>
+          <%= a.likes_count %> 
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
