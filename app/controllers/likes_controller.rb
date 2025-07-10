@@ -8,12 +8,7 @@ class LikesController < ApplicationController
     article = Like.find_article_under_profile(profile_id, article_id)
 
     if article.present?
-      like = Like.create(profile_id: profile_id, article_id: article_id)
-
-      unless like.persisted?
-        puts "❌ Like failed to save:"
-        puts like.errors.full_messages.inspect
-      end
+      Like.create(profile_id: profile_id, article_id: article_id)
 
       redirect_to profiles_path
     else
