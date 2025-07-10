@@ -2,18 +2,25 @@ class LikesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    article_id = params[:article_id]
     profile_id = params[:profile_id]
+    article_id = params[:article_id]
 
     article = Like.find_article_under_profile(profile_id, article_id)
 
     if article.present?
-      Like.create_like(profile_id, article_id)
+      like = Like.create(profile_id: profile_id, article_id: article_id)
+
+      unless like.persisted?
+        puts "❌ Like failed to save:"
+        puts like.errors.full_messages.inspect
+      end
+
       redirect_to profiles_path
     else
       redirect_to root_path
     end
   end
+
 
 
 # find the profile and the article
