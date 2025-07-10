@@ -23,6 +23,11 @@
   <% @articles.each do |a|%>
     <h3><strong><%= a.title%></strong></h3>
     <p><%= a.body%></p>
+    <% if a.image.persisted?%>
+      <%= image_tag a.image%>
+    <%else%>
+      <p>No image attached</p>
+    <%end%>
     <%= link_to "View Article", profile_article_path(@profile, a)%>
 </ul>
 <%end%>

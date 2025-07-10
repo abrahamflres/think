@@ -1,24 +1,23 @@
 class LikesController < ApplicationController
   before_action :authenticate_user!
 
+
+  # find the profile and the article
+  #
   def create
-    profile_id = params[:profile_id]
     article_id = params[:article_id]
+    profile_id = params[:profile_id]
 
     article = Like.find_article_under_profile(profile_id, article_id)
 
     if article.present?
-      Like.create(profile_id: profile_id, article_id: article_id)
-
+      Like.create_like(profile_id, article_id)
       redirect_to profiles_path
     else
-      redirect_to root_path
+      redirect_to profile_paths
     end
   end
 
-
-
-# find the profile and the article
 private
 
   def set_profile

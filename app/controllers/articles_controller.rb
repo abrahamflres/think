@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
 
 
     if @article.save
-      redirect_to profile_articles_path(@profile)
+      redirect_to profiles_path
     else
 
       render :new, status: :unprocessable_entity
