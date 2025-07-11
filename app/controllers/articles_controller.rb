@@ -54,6 +54,6 @@ private
   end
 
   def article_params
-    params.require(:article).permit(:title, :body, :image)
+    params.require(:article).permit(:title, :body, :image, :difficulty)
   end
 end

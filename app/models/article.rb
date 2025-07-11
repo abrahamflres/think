@@ -5,10 +5,15 @@ class Article < ApplicationRecord
   has_many :likes
   has_many :liked_profiles, through: :likes, source: :profile
 
+  DIFFICULTY = %w[easy medium hard none]
 
-  validates :title, :body, presence: true
+  validates :title, :body, :difficulty, presence: true
 
   def likes_count
     likes.count
+  end
+
+  def self.select_difficulty
+    %w[easy medium hard none]
   end
 end
