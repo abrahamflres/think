@@ -5,6 +5,8 @@ class Article < ApplicationRecord
   has_many :likes
   has_many :liked_profiles, through: :likes, source: :profile
 
+  has_many :article_topics
+  has_many :topics, through: :article_topics
 
 
   DIFFICULTY = %w[easy medium hard none]
