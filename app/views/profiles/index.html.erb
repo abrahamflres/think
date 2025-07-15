@@ -4,6 +4,7 @@
     <div class="card mb-3 shadow-sm">
       <div class="card-body">
         <h4 class="card-title"><%= a.title %></h4>
+        <h5 class= "card-text"><%= "Diffculty: #{a.difficulty}"%></h5>
         <p class="card-text"><%= a.body %></p>
 
         <% if a.image.attached? %>

@@ -1,9 +1,12 @@
 <br>
 <h1><%=@article.title%></h1>
 <p><%=@article.body%></p>
-
-<%= image_tag @article.image%>
+<% if @article.image.persisted?%>
+  <%= image_tag @article.image%>
+<%else%>
+  <p>No image</p>
+<%end%>
 
 
 <%= link_to "Update Article", edit_profile_article_path(@profile, @article)%>
-<%= button_to "Delete Article", profile_article_path(@profile, @article), method: :delete, data: { turbo_confirm: "Are you sure?" }%>
+<%= button_to "Delete Article", profile_article_path(@profile, @article), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-primary"%>

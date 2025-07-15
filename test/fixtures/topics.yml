@@ -4,8 +4,10 @@ one:
   topic: MyString
   description: MyText
   book: one
+  article: one
 
 two:
   topic: MyString
   description: MyText
   book: two
+  article: two
