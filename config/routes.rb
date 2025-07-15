@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
 
-
+  resources :topics, only: [ :show, :index ]
 
   resources :profiles do
     resources :articles do
       resources :likes, only: [ :create ]
+      resources :article_topics, only: [ :new, :create ]
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

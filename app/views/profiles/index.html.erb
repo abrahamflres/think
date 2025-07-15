@@ -1,4 +1,7 @@
 <%=link_to "Create an Article + ", new_profile_article_path(current_user.profile), class: "btn btn-primary"%>
+<h6>Filter by topic:</h6>
+<h6>Filter by difficulty: </h6>
+<h6>Filter by information type:  </h6>
 <div class="container mt-4">
   <% @articles.each do |a| %>
     <div class="card mb-3 shadow-sm">
