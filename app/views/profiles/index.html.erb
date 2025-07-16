@@ -7,18 +7,23 @@
     <div class="card mb-3 shadow-sm">
       <div class="card-body">
         <h4 class="card-title"><%= a.title %></h4>
+        <% if a.topic.present?%>
+          <h5 class= "card-text"><%= "Topic: #{a.topic.title}"%></h5>
+        <%else%>
+          <h5>null</h5>
+        <%end%>
         <h5 class= "card-text"><%= "Diffculty: #{a.difficulty}"%></h5>
+        <p class="text-muted mb-2">
+          Published by <strong><%= a.profile.username %></strong> |
+          <%= link_to "View Profile", profile_path(a.profile), class: "text-decoration-none" %>
+        </p>
+        <h6 class="text-muted"><%= a.profile.bio %></h6>
         <p class="card-text"><%= a.body %></p>
 
         <% if a.image.attached? %>
           <img src="<%= url_for(a.image) %>" class="img-fluid mb-3" alt="Article image">
         <% end %>
 
-        <p class="text-muted mb-2">
-          Published by <strong><%= a.profile.username %></strong> |
-          <%= link_to "View Profile", profile_path(a.profile), class: "text-decoration-none" %>
-        </p>
-        <p class="text-muted"><%= a.profile.bio %></p>
 
         <div class="d-flex align-items-center">
           <%= button_to "Like", profile_article_likes_path(a.profile, a), method: :post, class: "btn btn-outline-primary btn-sm me-2" %>

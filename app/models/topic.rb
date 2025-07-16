@@ -1,9 +1,6 @@
 class Topic < ApplicationRecord
-  validates :title, :description, presence: true
+  has_many :articles
+
+  validates :title, :body, presence: true
   validates :title, uniqueness: true
-
-
-  def self.list_topics
-    Topic.all
-  end
 end
