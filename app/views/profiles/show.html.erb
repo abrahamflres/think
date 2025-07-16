@@ -1,33 +1,44 @@
-<h1><%=@profile.username %></h1>
-<%= image_tag  @profile.image%>
-<%= @profile.firstname%> <%= @profile.lastname%> <br>
-<%= @profile.bio%>
+<div class="container mt-5">
+  <!-- Profile Header -->
+  <div class="card mb-4 p-4">
+    <div class="row align-items-center">
+      <div class="col-md-3 text-center">
+        <% if @profile.image.attached? %>
+          <%= image_tag @profile.image, class: "img-fluid rounded-circle shadow-sm", style: "max-height: 150px;" %>
+        <% else %>
+          <%= image_tag "default-profile.png", class: "img-fluid rounded-circle shadow-sm", style: "max-height: 150px;" %>
+        <% end %>
+      </div>
+      <div class="col-md-9">
+        <h2 class="fw-bold"><%= @profile.username %></h2>
+        <p class="mb-1 text-muted"><%= @profile.firstname %> <%= @profile.lastname %></p>
+        <p class="fst-italic"><%= @profile.bio %></p>
 
-<%# if current user clicks their own profile, will display following settings %>
-<% if @current_profile.id == @profile.id%>
+        <% if @current_profile&.id == @profile.id %>
+          <%= link_to "Edit Profile", edit_profile_path(@profile), class: "btn btn-outline-primary btn-sm me-2" %>
+          <%= link_to "Account Settings", edit_user_registration_path, class: "btn btn-outline-secondary btn-sm" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-  <%=link_to "Edit Profile", edit_profile_path(@profile), class:"btn btn-primary"%>
-  <%=link_to "Account Settings", edit_user_registration_path, class:"btn btn-secondary "%>
-<%else%>
-  <p></p>
-<%end%>
-
-
-
-
-<h3><%="Published Articles by: #{@profile.username} "%></h3>
-<br>
+  <!-- Articles Section -->
 
 
-<ul>
-  <% @articles.each do |a|%>
-    <h3><strong><%= a.title%></strong></h3>
-    <p><%= a.body%></p>
-    <% if a.image.persisted?%>
-      <%= image_tag a.image%>
-    <%else%>
-      <p>No image attached</p>
-    <%end%>
-    <%= link_to "View Article", profile_article_path(@profile, a)%>
-</ul>
-<%end%>
+  <% @articles.each do |a| %>
+    <div class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <h4 class="card-title fw-bold"><%= a.title %></h4>
+        <p class="card-text"><%= truncate(a.body, length: 200) %></p>
+
+        <% if a.image.attached? %>
+          <%= image_tag a.image, class: "img-fluid mb-3 rounded", style: "max-height: 250px;" %>
+        <% else %>
+          <p class="text-muted">No image attached</p>
+        <% end %>
+
+        <%= link_to "View Article", profile_article_path(@profile, a), class: "btn btn-sm btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>
