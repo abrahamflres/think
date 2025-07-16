@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :topics, only: [ :show, :index ]
 
   resources :profiles do
     resources :articles do
+      resources :topics
       resources :likes, only: [ :create ]
     end
   end

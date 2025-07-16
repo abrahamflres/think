@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article = @profile.articles.new
+    @topics = Topic.all.order(:title)
   end
 
   def create
@@ -52,6 +53,6 @@ private
   end
 
   def article_params
-    params.require(:article).permit(:title, :body, :image, :difficulty)
+    params.require(:article).permit(:title, :body, :image, :difficulty, :topic_id)
   end
 end

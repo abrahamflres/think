@@ -4,7 +4,9 @@
   <%= f.label :title %>
   <%= f.text_field :title %>
 
-  <%= f.label :topic%>
+
+  <%= f.label :topic_id, "Topic" %>
+  <%= f.collection_select :topic_id, @topics, :id, :title, prompt: "Select a Category" %>
 
   <%= f.label :body %>
   <%= f.text_area :body %>
@@ -14,7 +16,7 @@
 
   <%# <%= f.collection_select :DIFFICULTY%> 
   <%= f.label :difficulty%>
-  <%=f.select :difficulty, Article::DIFFICULTY.map { |type| [type.titleize, type] }%>
+  <%= f.select :difficulty, Article::DIFFICULTY.map { |type| [type.titleize, type] }%>
 
 
   <%= f.submit %>
