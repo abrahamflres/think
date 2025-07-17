@@ -4,4 +4,8 @@ class Topic < ApplicationRecord
   validates :title, :body, presence: true
   validates :title, uniqueness: true
 
+  def self.fetch_topics
+    topic = Topic.all
+    topic
+  end
 end
