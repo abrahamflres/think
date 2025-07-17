@@ -5,7 +5,12 @@ class Topic < ApplicationRecord
   validates :title, uniqueness: true
 
   def self.fetch_topics
-    topic = Topic.all
+    topics = Topic.all
+    topics
+  end
+
+  def self.fetch_topic(topic_id)
+    topic = Topic.find(topic_id)
     topic
   end
 end

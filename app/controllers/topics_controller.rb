@@ -4,5 +4,8 @@ class TopicsController < ApplicationController
   end
 
   def show
+    topic_id = params[:id]
+
+    @topic = Topic.fetch_topic(topic_id)
   end
 end
