@@ -1,5 +1,18 @@
-<h1><%=@topic.title%></h1>
-<p><%=@topic.body%></p>
+<% if @topic.image.attached? %>
+  <div class="topic-hero" style="background-image: url(<%= url_for(@topic.image) %>);">
+  </div>
+<% else %>
+  <div class="topic-hero placeholder">
+    <p>No image attached</p>
+  </div>
+<% end %>
 
-<%= link_to "back", topics_path, class: "btn btn-primary"%>
-<%= link_to "update topic", edit_topic_path%>
+<div class="topic-content container mt-4">
+  <h1><%= @topic.title %></h1>
+  <p><%= @topic.body %></p>
+
+  <div class="mt-4">
+    <%= link_to "Back", topics_path, class: "btn btn-secondary" %>
+    <%= link_to "Edit Topic", edit_topic_path(@topic), class: "btn btn-primary" %>
+  </div>
+</div>
