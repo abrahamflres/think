@@ -1,0 +1,14 @@
+<h1>form</h1>
+
+<%= form_with model: @topic, local: true do |t|%>
+  <%=t.label :title%>
+  <%=t.text_field :title%>
+
+  <%= t.label :body%>
+  <%= t.text_field :body%>
+
+  <%= t.file_field :image%>
+
+  <%= t.submit %>
+
+<%end%>

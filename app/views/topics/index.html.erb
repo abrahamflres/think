@@ -1,6 +1,25 @@
-<% @topics.each do |topic|%>
-  <h3><%=topic.title%></h3>
-  <p><%= topic.body%></p>
-  <%= link_to "Show Topic", topic_path(topic), class: "btn btn-primary"%>
-<%end%>
+<div class="row">
+  <% @topics.each do |topic| %>
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <% if topic.image.attached? %>
+          <%= image_tag(topic.image, class: "card-img-top") %>
+        <% else %>
+          <div class="card-img-top bg-light text-center py-5">
+            <p class="text-muted">No image attached</p>
+          </div>
+        <% end %>
+
+        <div class="card-body">
+          <h5 class="card-title"><%= topic.title %></h5>
+          <p class="card-text"><%= truncate(topic.body, length: 100) %></p>
+        </div>
+
+        <div class="card-footer text-end">
+          <%= link_to "Show Topic", topic_path(topic), class: "btn btn-primary btn-sm" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
