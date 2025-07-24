@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_16_153803) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_23_182748) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -63,6 +63,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_16_153803) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "feeds", force: :cascade do |t|
+    t.integer "profile_id", null: false
+    t.integer "topic_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_feeds_on_profile_id"
+    t.index ["topic_id"], name: "index_feeds_on_topic_id"
+  end
+
   create_table "likes", force: :cascade do |t|
     t.integer "profile_id", null: false
     t.integer "article_id", null: false
@@ -112,6 +121,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_16_153803) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "articles", "profiles"
   add_foreign_key "articles", "topics"
+  add_foreign_key "feeds", "profiles"
+  add_foreign_key "feeds", "topics"
   add_foreign_key "likes", "articles"
   add_foreign_key "likes", "profiles"
   add_foreign_key "profiles", "users"

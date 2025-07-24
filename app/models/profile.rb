@@ -7,6 +7,9 @@ class Profile < ApplicationRecord
   has_many :likes
   has_many :liked_articles, through: :likes, source: :article
 
+  has_many :feeds
+  has_many :topics, through: :feeds
+
 
   validates :username, uniqueness: true, presence: true
 end

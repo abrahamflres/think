@@ -44,7 +44,7 @@ class ArticlesController < ApplicationController
     @article = @profile.articles.find(params[:id])
     @article.destroy
 
-    redirect_to profile_path
+    redirect_to root_path
   end
 
 private

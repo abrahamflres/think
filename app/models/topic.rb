@@ -6,6 +6,9 @@ class Topic < ApplicationRecord
 
   has_one_attached :image
 
+  has_many :profiles, through: :feeds
+  has_many :feeds
+
   def self.fetch_topics
     topics = Topic.all
     topics

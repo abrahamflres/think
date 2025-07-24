@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
 
 
+
+
   resources :profiles do
+    resources :feeds, only: [ :index ]
     resources :articles do
       resources :topics
       resources :likes, only: [ :create ]

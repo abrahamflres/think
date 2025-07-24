@@ -1,0 +1,2 @@
+module ProfileTopicsHelper
+end

@@ -1,3 +1,4 @@
+
 <% if @topic.image.attached? %>
   <div class="topic-hero" style="background-image: url(<%= url_for(@topic.image) %>);">
   </div>
@@ -6,7 +7,7 @@
     <p>No image attached</p>
   </div>
 <% end %>
-
+<%= button_to "Join Community", "#", class: "btn btn-sucessful"%>
 <div class="topic-content container mt-4">
   <h1><%= @topic.title %></h1>
   <p><%= @topic.body %></p>
