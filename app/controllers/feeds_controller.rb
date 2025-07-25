@@ -6,6 +6,13 @@ class FeedsController < ApplicationController
     @feed_articles = Article.where(topic_id: @profile.topics.pluck(:id))
   end
 
+  def new
+    @feed = @profile.topic.feed.new
+  end
+
+  def create
+  end
+
 private
   def set_profile
     @profile = current_user.profile

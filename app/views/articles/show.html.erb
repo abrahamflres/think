@@ -7,6 +7,9 @@
   <p>No image</p>
 <%end%>
 
-
-<%= link_to "Update Article", edit_profile_article_path(@profile, @article)%>
-<%= button_to "Delete Article", profile_article_path(@profile, @article), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-primary"%>
+<% if current_user.profile == @article.profile%>
+  <%= link_to "Update Article", edit_profile_article_path(@profile, @article)%>
+  <%= button_to "Delete Article", profile_article_path(@profile, @article), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-primary"%>
+<%else%>
+  <p></p>
+<%end%>

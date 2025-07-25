@@ -12,9 +12,9 @@ class LikesController < ApplicationController
 
     if article.present?
       Like.create_like(profile_id, article_id)
-      redirect_to profiles_path
+      redirect_to profile_feeds_path
     else
-      redirect_to profile_paths
+      redirect_to profile_path
     end
   end
 
