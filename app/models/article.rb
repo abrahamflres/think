@@ -5,7 +5,7 @@ class Article < ApplicationRecord
   has_many :likes
   has_many :liked_profiles, through: :likes, source: :profile
 
-
+  has_many :comments, dependent: :destroy
 
   belongs_to :topic
 
