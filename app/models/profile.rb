@@ -10,6 +10,7 @@ class Profile < ApplicationRecord
   has_many :feeds
   has_many :topics, through: :feeds
 
+  has_many :comments
 
   validates :username, uniqueness: true, presence: true
 end

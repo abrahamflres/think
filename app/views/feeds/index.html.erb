@@ -24,9 +24,12 @@
             <img src="<%= url_for(a.image) %>" class="img-fluid mb-3" alt="Article image">
           <% end %>
           <div class="d-flex align-items-center">
-            <%= button_to "Like", profile_article_likes_path(a.profile, a), method: :post, class: "btn btn-outline-primary btn-sm me-2" %>
             <i class="fa-regular fa-thumbs-up me-1"></i>
+            <%= button_to "Like", profile_article_likes_path(a.profile, a), method: :post, class: "btn btn-outline-primary btn-sm me-2" %>
             <%= a.likes_count %> 
+            <i class="fa-solid fa-comment"></i>
+            <%= link_to "Comment", "#", class: "btn btn-outline-primary btn-sm me-2"%>
+            <br>
             <%= link_to "View Post", profile_article_path(a.profile, a), class: "btn btn-link btn-sm ms-3" %>
           </div>
         </div>
