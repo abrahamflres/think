@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if resource.profile.present?
-      profiles_path
+      profile_feeds_path(resource.profile)
     else
       new_profile_path
     end

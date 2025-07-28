@@ -3,7 +3,7 @@ class FeedsController < ApplicationController
 
   def index
     @profile = current_user.profile
-    @feed_articles = Article.where(topic_id: @profile.topics.pluck(:id))
+    @feed_articles = Article.where(topic_id: @profile.topics.pluck(:id)).order(created_at: :desc)
   end
 
   def new

@@ -6,7 +6,7 @@
         <% if @profile.image.attached? %>
           <%= image_tag @profile.image, class: "img-fluid rounded-circle shadow-sm", style: "max-height: 150px;" %>
         <% else %>
-          <%= image_tag "default-profile.png", class: "img-fluid rounded-circle shadow-sm", style: "max-height: 150px;" %>
+          <p>No image</p>
         <% end %>
       </div>
       <div class="col-md-9">

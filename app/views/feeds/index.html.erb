@@ -1,30 +1,37 @@
-<div class="container mt-4">
-  <% @feed_articles.each do |a| %>
-    <div class="card mb-3 shadow-sm">
-      <div class="card-body">
-        <h4 class="card-title"><%= a.title %></h4>
-        <% if a.topic.present?%>
-          <h5 class= "card-text"><%= "Topic: #{a.topic.title}"%></h5>
-        <%else%>
-          <h5>null</h5>
-        <%end%>
-        <p class="text-muted mb-2">
-          Published by <strong><%= a.profile.username %></strong> |
-          <%= link_to "View Profile", profile_path(a.profile), class: "text-decoration-none" %>
-        </p>
-        <h6 class="text-muted"><%= a.profile.bio %></h6>
-        <p class="card-text"><%= a.body %></p>
+<%= link_to "Create an Article", new_profile_article_path(current_user.profile), class: "btn btn-primary"%>
+<%if current_user.profile.feeds.any?%>
+  <div class="container mt-4">
+    <% @feed_articles.each do |a| %>
+      <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title"><%= a.title %></h4>
+          <% if a.topic.present?%>
+            <h5 class= "card-text"><%= "Topic: #{a.topic.title}"%></h5>
+          <%else%>
+            <h5>null</h5>
+          <%end%>
+          <p class="text-muted mb-2">
+            Published by <strong><%= a.profile.username %></strong> |
+            <%= link_to "View Profile", profile_path(a.profile), class: "text-decoration-none" %>
+          </p>
+          <h6 class="text-muted"><%= a.profile.bio %></h6>
+          <p class="card-text"><%= a.body %></p>
 
-        <% if a.image.attached? %>
-          <img src="<%= url_for(a.image) %>" class="img-fluid mb-3" alt="Article image">
-        <% end %>
-        <div class="d-flex align-items-center">
-          <%= button_to "Like", profile_article_likes_path(a.profile, a), method: :post, class: "btn btn-outline-primary btn-sm me-2" %>
-          <i class="fa-regular fa-thumbs-up me-1"></i>
-          <%= a.likes_count %> 
-          <%= link_to "View Post", profile_article_path(a.profile, a)%>
+          <% if a.image.attached? %>
+            <img src="<%= url_for(a.image) %>" class="img-fluid mb-3" alt="Article image">
+          <% end %>
+          <div class="d-flex align-items-center">
+            <%= button_to "Like", profile_article_likes_path(a.profile, a), method: :post, class: "btn btn-outline-primary btn-sm me-2" %>
+            <i class="fa-regular fa-thumbs-up me-1"></i>
+            <%= a.likes_count %> 
+            <%= link_to "View Post", profile_article_path(a.profile, a)%>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+<%else%>
+    <p>No Selected Topics yet</p>
+    <%= link_to "Show Topics", topics_path, class: "btn btn-primary"%>
+<%end%>
+
