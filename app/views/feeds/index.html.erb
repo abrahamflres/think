@@ -1,15 +1,18 @@
-<%= link_to "Create an Article", new_profile_article_path(current_user.profile), class: "btn btn-primary"%>
-<%if current_user.profile.feeds.any?%>
+<% if current_user.profile.feeds.any? %>
   <div class="container mt-4">
+    <div class="d-flex justify-content-end mb-3">
+      <%= link_to "Create an Article", new_profile_article_path(current_user.profile), class: "btn btn-primary" %>
+    </div>
     <% @feed_articles.each do |a| %>
       <div class="card mb-3 shadow-sm">
         <div class="card-body">
           <h4 class="card-title"><%= a.title %></h4>
-          <% if a.topic.present?%>
-            <h5 class= "card-text"><%= "Topic: #{a.topic.title}"%></h5>
-          <%else%>
+          <% if a.topic.present? %>
+            <h5 class="card-text"><%= "Topic: #{a.topic.title}" %></h5>
+          <% else %>
             <h5>null</h5>
-          <%end%>
+          <% end %>
+
           <p class="text-muted mb-2">
             Published by <strong><%= a.profile.username %></strong> |
             <%= link_to "View Profile", profile_path(a.profile), class: "text-decoration-none" %>
@@ -24,14 +27,13 @@
             <%= button_to "Like", profile_article_likes_path(a.profile, a), method: :post, class: "btn btn-outline-primary btn-sm me-2" %>
             <i class="fa-regular fa-thumbs-up me-1"></i>
             <%= a.likes_count %> 
-            <%= link_to "View Post", profile_article_path(a.profile, a)%>
+            <%= link_to "View Post", profile_article_path(a.profile, a), class: "btn btn-link btn-sm ms-3" %>
           </div>
         </div>
       </div>
     <% end %>
   </div>
-<%else%>
-    <p>No Selected Topics yet</p>
-    <%= link_to "Show Topics", topics_path, class: "btn btn-primary"%>
-<%end%>
-
+<% else %>
+  <p>No Selected Topics yet</p>
+  <%= link_to "Show Topics", topics_path, class: "btn btn-primary" %>
+<% end %>
