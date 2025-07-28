@@ -2,11 +2,15 @@ Rails.application.routes.draw do
   resources :topics
   devise_for :users
 
-
+  resources :profiles do
+    resources :topics do
+      resources :feeds, only: [ :index, :create ]
+    end
+  end
 
 
   resources :profiles do
-    resources :feeds, only: [ :index ]
+    resources :feeds, only: [ :index, :create ]
     resources :articles do
       resources :topics
       resources :likes, only: [ :create ]

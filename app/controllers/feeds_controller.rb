@@ -7,10 +7,18 @@ class FeedsController < ApplicationController
   end
 
   def new
-    @feed = @profile.topic.feed.new
   end
 
   def create
+    @topic = Topic.find(params[:topic_id])
+    @feed = @profile.feeds.build(topic: @topic)
+    @profile = current_user.profile
+
+    if @feed.save
+      redirect_to profile_feeds_path
+    else
+      redirect_to root_path, status: :unprocessble_entity
+    end
   end
 
 private

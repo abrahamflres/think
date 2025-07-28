@@ -14,10 +14,9 @@
           <h5 class="card-title"><%= topic.title %></h5>
           <p class="card-text"><%= truncate(topic.body, length: 100) %></p>
         </div>
-
         <div class="card-footer text-end">
           <%= link_to "Show Topic", topic_path(topic), class: "btn btn-primary btn-sm" %>
-          <%= button_to "Join Community", class: "btn btn-secondary btn-sm"%>
+          <%= button_to "Join Community", profile_topic_feeds_path(current_user.profile.id, topic), method: :post%>
         </div>
       </div>
     </div>
