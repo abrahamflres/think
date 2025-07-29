@@ -2,13 +2,14 @@ class CommentsController < ApplicationController
   before_action :set_profile
   def new
     @article = Article.find(params[:article_id])
+    @profile = current_user.profile
 
 
     @comment = Comment.new(profile_id: @profile, article_id: @article)
   end
 
 def create
-  @profile = Profile.find(params[:profile_id])
+  @profile = current_user.profile
   @article = Article.find(params[:article_id])
 
   @comment = Comment.new(comment_params)

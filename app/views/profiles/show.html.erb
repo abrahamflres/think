@@ -20,7 +20,16 @@
         <% end %>
       </div>
     </div>
+    <%=link_to "Github", "https://github.com/abrahamflres"%> <i class="fa-brands fa-github"></i>
+    <%=link_to "Linkedin", "https://www.linkedin.com/in/abraham-flores-918098339/"%><i class="fa-brands fa-linkedin"></i>
+  
   </div>
+<% if @profile.streak != nil %>
+  <p>Streak: <%= @profile.streak %></p>
+<%else%>
+  <p>Streak: 0</p>
+<%end%>
+
 
   <!-- Articles Section -->
 
