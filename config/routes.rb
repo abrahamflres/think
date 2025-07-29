@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "comments/new"
+  get "comments/create"
   resources :topics
   devise_for :users
 
@@ -12,6 +14,7 @@ Rails.application.routes.draw do
   resources :profiles do
     resources :feeds, only: [ :index, :create ]
     resources :articles do
+      resources :comments, only: [ :new, :create ]
       resources :topics
       resources :likes, only: [ :create ]
     end

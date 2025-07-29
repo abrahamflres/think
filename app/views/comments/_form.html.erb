@@ -1,0 +1,7 @@
+<%= form_with(model: [:profile, :article, @comment], local: true) do |f| %>
+  <%= f.label :body, "Comment" %>
+  <%= f.text_area :body %>
+
+  <%= f.submit "Create Comment" %>
+<% end %>
+
