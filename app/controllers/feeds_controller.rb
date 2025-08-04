@@ -1,11 +1,28 @@
 class FeedsController < ApplicationController
   before_action :set_profile
-
+  # TODO: get the feed to take a filtered and a default feed
   def index
     @profile = current_user.profile
     @topics = @profile.topics
-    @feed_articles = Article.where(topic_id: @profile.topics.pluck(:id)).order(created_at: :desc)
-    @comments = Comment.all
+
+    @chosen_topic = params[:topic_id]
+
+    if params[:topic_id].present?
+      @filtered_articles = Article.where(topic_id: params[:topic_id]).order(created_at: :desc)
+    else
+      @feed_articles = Article.where(topic_id: @profile.topics.pluck(:id)).order(created_at: :desc)
+    end
+  end
+
+  def show
+    @profile = current_user.profile
+    @topic = params[:topic_id]
+
+    if @topic.present?
+      @feed_articles_filtered = Article.where(topic_id: @topic).order(created_at: :desc)
+    else
+      @feed_articles = Article.where(topic_id: @profile.topics.pluck(:id)).order(created_at: :desc)
+    end
   end
 
   def new

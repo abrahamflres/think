@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
-  get "comments/new"
-  get "comments/create"
   resources :topics
   devise_for :users
 
   resources :profiles do
     resources :topics do
-      resources :feeds, only: [ :index, :create ]
+      resources :feeds, only: [ :index, :create, :show ]
     end
   end
+  get "/profiles/:profile_id/feeds/topic/:topic_id", to: "feeds#index", as: :profile_topic_filtered_feeds
+
 
 
   resources :profiles do
