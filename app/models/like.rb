@@ -8,7 +8,7 @@ class Like < ApplicationRecord
 
   # create two functions called create like and find artile under profile
   #
-  def self.find_article_under_profile(profile_id, article_id)
+  def self.find_artic4le_under_profile(profile_id, article_id)
     Article.find_by(profile_id: profile_id, id: article_id)
   end
 

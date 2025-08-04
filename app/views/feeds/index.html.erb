@@ -1,8 +1,15 @@
 <% if current_user.profile.feeds.any? %>
   <div class="container mt-4">
     <div class="d-flex justify-content-end mb-3">
-      <%= link_to "Create an Article", new_profile_article_path(current_user.profile), class: "btn btn-primary" %>
+      <%= link_to "Create an Article", new_profile_article_path(current_user.profile), class: "btn btn-primary " %>
     </div>
+    <%@topics.each do |topic|%>
+      <% if topic != nil%>
+        <button class="btn"> <%= topic.title%></button>
+      <%else%>
+        <%= "no topics"%>
+      <%end%>
+    <%end%>
     <% @feed_articles.each do |a| %>
       <div class="card mb-3 shadow-sm">
         <div class="card-body">

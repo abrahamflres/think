@@ -3,6 +3,7 @@ class FeedsController < ApplicationController
 
   def index
     @profile = current_user.profile
+    @topics = @profile.topics
     @feed_articles = Article.where(topic_id: @profile.topics.pluck(:id)).order(created_at: :desc)
     @comments = Comment.all
   end
