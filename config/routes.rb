@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get "/profiles/:profile_id/feeds/topic/:topic_id", to: "feeds#index", as: :profile_topic_filtered_feeds
 
 
+  post "profiles/:profile_id/", to: "profiles#streak", as: :profile_increment_streak
+
 
   resources :profiles do
     resources :feeds, only: [ :index, :create ]

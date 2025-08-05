@@ -27,6 +27,18 @@ class ProfilesController < ApplicationController
     @profile = current_user.profile
   end
 
+  def streak
+    @profile = current_user.profile
+    @profile.streak += 1
+
+
+    if @profile.save
+      redirect_to profiles_path
+    else
+      redirect_to profile_feeds_path, status: :unprocessable_entity
+    end
+  end
+
   def update
     @profile = current_user.profile
     if @profile.update(profile_params)
