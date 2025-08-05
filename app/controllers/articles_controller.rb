@@ -14,6 +14,9 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     @article.profile = @profile
+    @profile = current_user.profile
+    @profile.streak +=1
+    @profile.save
 
     if @article.save
       redirect_to profile_feeds_path
