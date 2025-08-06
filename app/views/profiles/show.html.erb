@@ -21,7 +21,19 @@
       </div>
     </div>
 
-  </div>
+    <div class="heatmap">
+      <% @engagement_data.each do |date, count| %>
+        <% color_class = case count
+          when 0 then "heatmap-day-0"
+          when 1..2 then "heatmap-day-1"
+          when 3..5 then "heatmap-day-2"
+          else "heatmap-day-3"
+        end %>
+        <div class="heatmap-day <%= color_class %>"></div>
+      <% end %>
+    </div>
+
+
 <% if @profile.streak != nil %>
   <p>Streak: <%= @profile.streak %></p>
 <%else%>

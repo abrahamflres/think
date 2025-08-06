@@ -30,3 +30,19 @@
 .topic-content {
   max-width: 800px;
 }
+.heatmap {
+  display: grid;
+  grid-template-columns: repeat(7, 20px);
+  gap: 4px;
+}
+
+.heatmap-day {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+}
+
+.heatmap-day-0 { background-color: #eee; }
+.heatmap-day-1 { background-color: #c6e48b; }
+.heatmap-day-2 { background-color: #7bc96f; }
+.heatmap-day-3 { background-color: #239a3b; }

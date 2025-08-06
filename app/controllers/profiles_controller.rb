@@ -6,8 +6,10 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = Profile.find(params[:id])
-    @articles = @profile.articles
+    @articles = @profile.articles.order(created_at: :desc)
     @current_profile = current_user.profile
+
+    @engagement_data = @profile.engagements.group(:activity_date).count.transform_keys { |date| date.to_time.to_i * 1000 }
   end
 
   def new
