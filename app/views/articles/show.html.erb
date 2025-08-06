@@ -6,7 +6,7 @@
 <%else%>
   <p>No image</p>
 <%end%>
-<%=button_to "Mark as Read", profile_increment_streak_path(@profile),method: :post, class: "btn btn-secondary"%>
+<%=button_to "Mark as Read", profile_engagements_path(@profile),method: :post, class: "btn btn-secondary"%>
 
 <% if current_user.profile == @article.profile%>
   <%= link_to "Update Article", edit_profile_article_path(@profile, @article)%>
