@@ -12,5 +12,7 @@ class Profile < ApplicationRecord
 
   has_many :comments
 
+  has_many :engagements, dependent: :destroy
+
   validates :username, uniqueness: true, presence: true
 end
