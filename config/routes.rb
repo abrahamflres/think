@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get "engagements/create"
   resources :topics
-  devise_for :users
+  devise_for :users, controllers: {
+  omniauth_callbacks: "users/omniauth_callbacks" }
 
   resources :profiles do
     resources :engagements, only: [ :create ]

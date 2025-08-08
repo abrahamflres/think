@@ -33,17 +33,6 @@
       <% end %>
     </div>
 
-
-<% if @profile.streak != nil %>
-  <p>Streak: <%= @profile.streak %></p>
-<%else%>
-  <p>Streak: 0</p>
-<%end%>
-
-
-  <!-- Articles Section -->
-
-
 <div class="container mt-4">
   <% @articles.each do |a| %>
     <div class="card mb-3 shadow-sm">

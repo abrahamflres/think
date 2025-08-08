@@ -64,3 +64,8 @@ end
 
 gem "devise", "~> 4.9"
 gem "image_processing", ">= 1.2"
+
+# Omniauth
+gem "omniauth-google-oauth2"
+gem "omniauth"
+gem "omniauth-rails_csrf_protection", "~> 1.0"
