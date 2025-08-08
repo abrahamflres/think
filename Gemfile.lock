@@ -148,9 +148,9 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    jbuilder (2.13.0)
-      actionview (>= 5.0.0)
-      activesupport (>= 5.0.0)
+    jbuilder (2.14.0)
+      actionview (>= 7.0.0)
+      activesupport (>= 7.0.0)
     json (2.12.2)
     jwt (3.1.2)
       base64
@@ -203,19 +203,19 @@ GEM
       net-protocol
     net-ssh (7.3.0)
     nio4r (2.7.4)
-    nokogiri (1.18.8-aarch64-linux-gnu)
+    nokogiri (1.18.9-aarch64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.8-aarch64-linux-musl)
+    nokogiri (1.18.9-aarch64-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.18.8-arm-linux-gnu)
+    nokogiri (1.18.9-arm-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.8-arm-linux-musl)
+    nokogiri (1.18.9-arm-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.18.8-arm64-darwin)
+    nokogiri (1.18.9-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.8-x86_64-linux-gnu)
+    nokogiri (1.18.9-x86_64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.8-x86_64-linux-musl)
+    nokogiri (1.18.9-x86_64-linux-musl)
       racc (~> 1.4)
     oauth2 (2.0.12)
       faraday (>= 0.17.3, < 4.0)
@@ -229,9 +229,6 @@ GEM
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
       rack-protection
-    omniauth-github (2.0.1)
-      omniauth (~> 2.0)
-      omniauth-oauth2 (~> 1.8)
     omniauth-google-oauth2 (1.2.1)
       jwt (>= 2.9.2)
       oauth2 (~> 2.0)
@@ -450,7 +447,6 @@ DEPENDENCIES
   jbuilder
   kamal
   omniauth
-  omniauth-github
   omniauth-google-oauth2
   omniauth-rails_csrf_protection (~> 1.0)
   propshaft
