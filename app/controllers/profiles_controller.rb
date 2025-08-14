@@ -2,9 +2,9 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_profile
   def index
-    @filtered_profiles = Profile.where(topic_id: @profile.topic.id)
+    @filtered_profiles = Profile.where(topic_id: @profile.topic.id).where.not(id: @profile.id)
 
-    @profiles = Profile.all
+    @profiles = Profile.all().where.not(id: @profile.id)
   end
 
   def show
