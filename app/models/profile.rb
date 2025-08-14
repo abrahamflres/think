@@ -14,5 +14,7 @@ class Profile < ApplicationRecord
 
   has_many :engagements, dependent: :destroy
 
+  belongs_to :topic
+
   validates :username, uniqueness: true, presence: true
 end

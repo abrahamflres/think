@@ -14,6 +14,7 @@ class ProfilesController < ApplicationController
 
   def new
     @profile = current_user.build_profile
+    @topics = Topic.all.order(:title)
   end
   def create
     @profile = current_user.build_profile(profile_params)
@@ -27,6 +28,7 @@ class ProfilesController < ApplicationController
 
   def edit
     @profile = current_user.profile
+    @topics = Topic.all.order(:title)
   end
 
   def streak
@@ -52,6 +54,6 @@ class ProfilesController < ApplicationController
 
 private
   def profile_params
-    params.require(:profile).permit(:username, :firstname, :lastname, :bio, :image)
+    params.require(:profile).permit(:username, :firstname, :lastname, :bio, :image, :topic_id)
   end
 end

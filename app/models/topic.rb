@@ -9,6 +9,8 @@ class Topic < ApplicationRecord
   has_many :profiles, through: :feeds
   has_many :feeds
 
+  has_many :profiles
+
   def self.fetch_topics
     topics = Topic.all
     topics
