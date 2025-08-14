@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
   def index
-    @articles = Article.all
+    @profiles = Profile.all
   end
 
   def show

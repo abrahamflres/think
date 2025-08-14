@@ -9,20 +9,13 @@
     <li class = "nav-item mx-2">
       <%= link_to "Topics", topics_path,class: "text-decoration-none text-dark fw-medium" %>
     </li>
-    <li class="nav-item mx-2">
-      <%= link_to "Articles", "#", class: "text-decoration-none text-dark fw-medium" %>
-    </li>
-    <li class="nav-item mx-2">
-      <%= link_to "Books", "#", class: "text-decoration-none text-dark fw-medium" %>
-    </li>
-    <li class="nav-item mx-2">
-      <%= link_to "Podcasts", "#", class: "text-decoration-none text-dark fw-medium" %>
-    </li>
 
+    <li class="nav-item mx-2">
+      <%= link_to "Find Users", profiles_path, class: "text-decoration-none text-dark fw-medium" %>
+    </li>  
     <li class="nav-item mx-2">
       <%= link_to "Profile", profile_path(current_user.profile), class: "text-decoration-none text-dark fw-medium" %>
     </li>
-
     <li class="nav-item mx-2">
       <%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete }, class: "text-decoration-none text-danger fw-medium" %>
     </li>
