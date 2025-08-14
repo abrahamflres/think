@@ -69,3 +69,6 @@ gem "image_processing", ">= 1.2"
 gem "omniauth-google-oauth2"
 gem "omniauth"
 gem "omniauth-rails_csrf_protection", "~> 1.0"
+
+
+gem "byebug", "~> 11.1", ">= 11.1.3"

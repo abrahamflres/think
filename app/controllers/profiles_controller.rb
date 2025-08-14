@@ -1,6 +1,9 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_profile
   def index
+    @filtered_profiles = Profile.where(topic_id: @profile.topic.id)
+
     @profiles = Profile.all
   end
 
@@ -55,5 +58,9 @@ class ProfilesController < ApplicationController
 private
   def profile_params
     params.require(:profile).permit(:username, :firstname, :lastname, :bio, :image, :topic_id)
+  end
+
+  def set_profile
+    @profile = current_user.profile
   end
 end
