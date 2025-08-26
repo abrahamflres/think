@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get "engagements/create"
   resources :topics
   devise_for :users, controllers: {
   omniauth_callbacks: "users/omniauth_callbacks" }
@@ -17,6 +16,7 @@ Rails.application.routes.draw do
 
 
   resources :profiles do
+    resources :follows
     resources :feeds, only: [ :index, :create ]
     resources :articles do
       resources :comments, only: [ :new, :create ]

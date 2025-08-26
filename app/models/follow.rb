@@ -6,7 +6,7 @@ class Follow < ApplicationRecord
 
   validates :follower_id, uniqueness: { scope: :followee_id }
 
-  validates :cannot_follow_self
+  validate :cannot_follow_self
 
   def cannot_follow_self
     if follower_id == followee_id
