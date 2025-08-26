@@ -16,5 +16,12 @@ class Profile < ApplicationRecord
 
   belongs_to :topic
 
+  has_many :given_follows, foreign_key: :follower_id, class_name: "Follow"
+  has_many :followees, through: :given_follows, source: :followee
+
+  has_many :recieved_follows, foreign_key: :followee_id, class_name: "Follow"
+  has_many :followers, through: :recieved_follows, source: :follower
+
+
   validates :username, uniqueness: true, presence: true
 end
