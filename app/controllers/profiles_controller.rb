@@ -1,9 +1,9 @@
 class ProfilesController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_profile
+  before_action :set_profile, only: [ :edit, :update, :show ]
   def index
+    @profile = current_user.profile
     @filtered_profiles = Profile.where(topic_id: @profile.topic.id).where.not(id: @profile.id)
-
+    # bug upabove
     @profiles = Profile.all().where.not(id: @profile.id)
   end
 
@@ -61,6 +61,13 @@ private
   end
 
   def set_profile
-    @profile = current_user.profile
+    @profile = Profile.find(params[:id])
+
+    if @profile == current_user.profile
+      profiles_path
+    else
+      flash[:alert] = "Must sign in"
+      redirect_to root_path
+    end
   end
 end
