@@ -13,10 +13,13 @@
         <h2 class="fw-bold"><%= "@#{@profile.username}"%></h2>
         <p class="mb-1 text-muted"><%= @profile.firstname %> <%= @profile.lastname %></p>
         <p class="fst-italic"><%= @profile.bio %></p>
-
+        <%="Followers: #{@follower_count}"%>
+        <%="Following: #{@following_count}"%>
         <% if @current_profile&.id == @profile.id %>
           <%= link_to "Edit Profile", edit_profile_path(@profile), class: "btn btn-outline-primary btn-sm me-2" %>
           <%= link_to "Account Settings", edit_user_registration_path, class: "btn btn-outline-secondary btn-sm" %>
+        <%else%>
+          <%= button_to "Follow", "#", class: "btn btn-primary"%>
         <% end %>
       </div>
     </div>

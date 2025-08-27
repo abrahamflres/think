@@ -7,7 +7,15 @@
 <% end %>
 
 <%@searched_profile.each do |p|%>
-  <p><%= p.username%></p>
+  <%if p.image.present?%>
+    <p>
+      <%=image_tag p.image, width: 40, height: 40, class:"rounded-circle me-2 border"%>
+      <%=link_to "#{p.username}", profile_path(p)%>
+      <%=button_to "Follow", profile_follows_path(@profile), params: {followee_id: p.id}, method: :post, class: "btn btn-secondary btn-sm"%>
+    </p>
+  <%else%>
+     <p><%= p.username%><p>No image attacthed</p>
+  <%end%>
 <%end%>
 
 <h3 class="mb-4">

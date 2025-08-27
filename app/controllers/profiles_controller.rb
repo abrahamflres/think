@@ -1,11 +1,17 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [ :edit, :update, :show ]
+  before_action :set_profile, only: [ :edit, :update ]
   def index
     @q = Profile.ransack(params[:q])
     @searched_profile = @q.result
 
     @profile = current_user.profile
-    @filtered_profiles = Profile.where(topic_id: @profile.topic.id).where.not(id: @profile.id)
+    if @profile.topic != nil
+      @filtered_profiles = Profile.where(topic_id: @profile.topic.id).where.not(id: @profile.id)
+    else
+      flash[:notice] = "Choose a topic first"
+      redirect_to topics_path
+    end
+
     # bug upabove
     @profiles = Profile.all().where.not(id: @profile.id)
   end
@@ -16,6 +22,9 @@ class ProfilesController < ApplicationController
     @current_profile = current_user.profile
 
     @engagement_data = @profile.engagements.group(:activity_date).count.transform_keys { |date| date.to_time.to_i * 1000 }
+
+    @following_count = @profile.followees.count
+    @follower_count = @profile.followers.count
   end
 
   def new
