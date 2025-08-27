@@ -72,3 +72,5 @@ gem "omniauth-rails_csrf_protection", "~> 1.0"
 
 
 gem "byebug", "~> 11.1", ">= 11.1.3"
+
+gem "ransack", "~> 4.3"

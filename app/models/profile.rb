@@ -24,4 +24,10 @@ class Profile < ApplicationRecord
 
 
   validates :username, uniqueness: true, presence: true
+
+
+
+  def self.ransackable_attributes(auth_object = nil)
+    [ "username" ]
+  end
 end

@@ -1,6 +1,9 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [ :edit, :update, :show ]
   def index
+    @q = Profile.ransack(params[:q])
+    @searched_profile = @q.result
+
     @profile = current_user.profile
     @filtered_profiles = Profile.where(topic_id: @profile.topic.id).where.not(id: @profile.id)
     # bug upabove
