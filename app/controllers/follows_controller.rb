@@ -1,5 +1,5 @@
 class FollowsController < ApplicationController
-  before_action :set_profile, only: [ :destroy ]
+  before_action :set_profile, only: [ :destroy, :create ]
   def index
     # return followers
     @followers = @profile.followers

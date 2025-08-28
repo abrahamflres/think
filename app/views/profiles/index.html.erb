@@ -22,8 +22,11 @@
               <% end %>
               <%= link_to p.username, profile_path(p), class: "fw-bold text-dark text-decoration-none" %>
             </div>
-            <%= button_to "Follow", profile_follows_path(@profile), params: { followee_id: p.id }, method: :post, class: "btn btn-sm btn-outline-primary" %>
-            <%= button_to "Unfollow",  profile_follow_path(@profile, p.id), method: :delete, class: "btn btn-sm btn-outline-primary"%>
+            <%if @profile.followees.include?(p) %>
+              <%= button_to "Unfollow",  profile_follow_path(@profile, p.id), method: :delete, class: "btn btn-sm btn-outline-primary"%>
+            <%else%>
+              <%= button_to "Follow", profile_follows_path(@profile), params: { followee_id: p.id }, method: :post, class: "btn btn-sm btn-outline-primary" %>
+            <%end%>           
           </div>
         </div>
       </div>
