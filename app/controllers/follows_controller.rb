@@ -1,5 +1,5 @@
 class FollowsController < ApplicationController
-  before_action :set_profile
+  before_action :set_profile, only: [ :destroy ]
   def index
     # return followers
     @followers = @profile.followers
@@ -32,6 +32,9 @@ class FollowsController < ApplicationController
   end
 
   def destroy
+    @follow = @profile.given_follows.find(params[:id])
+    flash[:alert] = "Unfollowed"
+    @follow.destroy!
   end
 private
   def set_profile

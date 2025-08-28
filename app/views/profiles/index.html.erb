@@ -1,69 +1,78 @@
-<%= search_form_for @q, method: :get do |f| %>
-  <div class="mb-3">
-    <%= f.label :username_cont, "Search by Username" %>
-    <%= f.search_field :username_cont, class: "form-control" %>
+<!-- 🔍 Search Form -->
+<div class="mb-4">
+  <%= search_form_for @q, method: :get, class: "d-flex gap-2" do |f| %>
+    <%= f.search_field :username_cont, placeholder: "Search by Username", class: "form-control" %>
+    <%= f.submit "Search", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<!-- 🔍 Search Results -->
+<% if @searched_profile.present? %>
+  <h3 class="mb-4">Search Results</h3>
+  <div class="row">
+    <% @searched_profile.each do |p| %>
+      <div class="col-md-4">
+        <div class="card mb-3 shadow-sm border-0">
+          <div class="card-body d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+              <% if p.image.attached? %>
+                <%= image_tag p.image, width: 40, height: 40, class: "rounded-circle me-2 border" %>
+              <% else %>
+                <%= image_tag "default-avatar.png", width: 40, height: 40, class: "rounded-circle me-2 border" %>
+              <% end %>
+              <%= link_to p.username, profile_path(p), class: "fw-bold text-dark text-decoration-none" %>
+            </div>
+            <%= button_to "Follow", profile_follows_path(@profile), params: { followee_id: p.id }, method: :post, class: "btn btn-sm btn-outline-primary" %>
+            <%= button_to "Unfollow",  profile_follow_path(@profile, p.id), method: :delete, class: "btn btn-sm btn-outline-primary"%>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-  <%= f.submit "Search", class: "btn btn-primary" %>
 <% end %>
 
-<%@searched_profile.each do |p|%>
-  <%if p.image.present?%>
-    <p>
-      <%=image_tag p.image, width: 40, height: 40, class:"rounded-circle me-2 border"%>
-      <%=link_to "#{p.username}", profile_path(p)%>
-      <%=button_to "Follow", profile_follows_path(@profile), params: {followee_id: p.id}, method: :post, class: "btn btn-secondary btn-sm"%>
-    </p>
-  <%else%>
-     <p><%= p.username%><p>No image attacthed</p>
-  <%end%>
-<%end%>
-
-<h3 class="mb-4">
+<!-- 👥 Similar Creators -->
+<h3 class="mt-5 mb-4">
   Similar creators in <span class="text-primary"><%= @profile.topic.title %></span>
 </h3>
 
 <div class="row">
   <% @filtered_profiles.each do |p| %>
     <div class="col-md-4">
-      <div class="card mb-3 shadow-sm">
+      <div class="card mb-3 shadow-sm border-0">
         <div class="card-body d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-center">
             <% if p.image.attached? %>
-              <%= image_tag p.image, width: 40, height:40,
-                  class: "rounded-circle me-2 border" %>
+              <%= image_tag p.image, width: 40, height: 40, class: "rounded-circle me-2 border" %>
             <% else %>
-              <%= image_tag "default-avatar.png",
-                  width: 40, height: 40,
-                  class: "rounded-circle me-2 border" %>
+              <%= image_tag "default-avatar.png", width: 40, height: 40, class: "rounded-circle me-2 border" %>
             <% end %>
-            <span class="fw-bold"><%= p.username %></span>
+            <span class="fw-bold ms-2"><%= p.username %></span>
           </div>
-          <%= button_to "Follow", profile_follows_path(@profile),params: {followee_id: p.id}, method: :post, class: "btn btn-sm btn-outline-primary" %>
+          <%= button_to "Follow", profile_follows_path(@profile), params: { followee_id: p.id }, method: :post, class: "btn btn-sm btn-outline-primary" %>
         </div>
       </div>
     </div>
   <% end %>
 </div>
 
+<!-- 🌍 All Creators -->
 <h4 class="mt-5 mb-4">Creators you can follow</h4>
 
 <div class="row">
   <% @profiles.each do |profile| %>
     <div class="col-md-4">
-      <div class="card mb-3 border-0 shadow-sm">
+      <div class="card mb-3 shadow-sm border-0">
         <div class="card-body d-flex align-items-center justify-content-between">
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-itemss-center">
             <% if profile.image.attached? %>
-              <%= image_tag profile.image,height: 40, width: 40,
-                  class: "rounded-circle me-2 border" %>
+              <%= image_tag profile.image, width: 40, height: 40, class: "rounded-circle me-2 border" %>
             <% else %>
-              <%= image_tag "default-avatar.png",
-                  width: 40, height: 40,
-                  class: "rounded-circle me-2 border" %>
+              <%= image_tag "default-avatar.png", width: 40, height: 40, class: "rounded-circle me-2 border" %>
             <% end %>
-            <span><%= profile.username %></span>
+            <span class="fw-bold ms-2"><%= profile.username %></span>
           </div>
-          <%= button_to "Follow", profile_follows_path(@profile),params: {followee_id: profile.id}, method: :post, class: "btn btn-sm btn-outline-secondary" %>
+          <%= button_to "Follow", profile_follows_path(@profile), params: { followee_id: profile.id }, method: :post, class: "btn btn-sm btn-outline-secondary" %>
         </div>
       </div>
     </div>
